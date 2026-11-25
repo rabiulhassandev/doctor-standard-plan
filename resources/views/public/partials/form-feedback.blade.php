@@ -1,0 +1,2 @@
+@if(session('status'))<div class="notice notice-success" role="status" tabindex="-1"><x-public.icon name="check" /><div><strong>{{ __('site.request_received') }}</strong><p>{{ session('status') }}</p></div></div>@endif
+@if($errors->any())<div class="notice notice-error" role="alert" tabindex="-1"><strong>{{ __('site.check_form') }}</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif

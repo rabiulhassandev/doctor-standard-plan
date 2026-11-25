@@ -1,7 +1,11 @@
 <?php
 
-test('the application returns a successful response', function () {
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+
+uses(LazilyRefreshDatabase::class);
+
+test('the application opens the default Bangla homepage', function () {
     $response = $this->get('/');
 
-    $response->assertStatus(200);
+    $response->assertRedirect('/bn');
 });

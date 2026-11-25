@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\DoctorProfile;
+use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        if (! app()->environment('local', 'testing')) {
+            return;
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::query()->firstOrCreate(['email' => 'admin@example.com'], [
+            'name' => 'Demo Admin',
+            'password' => 'password',
+            'is_admin' => true,
         ]);
+
+        $configured = DoctorProfile::query()->where('is_demo', false)->exists()
+            || SiteSetting::query()->where('is_demo', false)->exists();
+        $this->call([$configured ? DemoContentSeeder::class : DemoSeeder::class, DemoMediaSeeder::class]);
     }
 }
