@@ -27,6 +27,75 @@ if (menuToggle && mobileNavigation) {
     });
 }
 
+const floatingShare = document.querySelector('[data-floating-share]');
+
+if (floatingShare) {
+    const toggle = floatingShare.querySelector('summary');
+    const copyButton = floatingShare.querySelector('[data-copy-share]');
+    const shareUrl = floatingShare.querySelector('[data-share-url]');
+    const status = floatingShare.querySelector('[data-share-status]');
+    let openedByHover = false;
+
+    floatingShare.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse' && !floatingShare.open) {
+            openedByHover = true;
+            floatingShare.open = true;
+        }
+    });
+
+    floatingShare.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' && openedByHover) {
+            floatingShare.open = false;
+        }
+    });
+
+    toggle.addEventListener('click', (event) => {
+        if (openedByHover && floatingShare.open) {
+            event.preventDefault();
+            openedByHover = false;
+        }
+    });
+
+    floatingShare.addEventListener('focusin', (event) => {
+        if (event.target !== toggle) {
+            openedByHover = false;
+        }
+    });
+
+    copyButton.hidden = false;
+    copyButton.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(shareUrl.value);
+            status.textContent = status.dataset.copiedMessage;
+        } catch {
+            shareUrl.hidden = false;
+            shareUrl.focus();
+            shareUrl.select();
+        }
+    });
+
+    floatingShare.addEventListener('toggle', () => {
+        if (!floatingShare.open) {
+            openedByHover = false;
+            shareUrl.hidden = true;
+            status.textContent = '';
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (floatingShare.open && !floatingShare.contains(event.target)) {
+            floatingShare.open = false;
+        }
+    });
+
+    floatingShare.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && floatingShare.open) {
+            floatingShare.open = false;
+            toggle.focus();
+        }
+    });
+}
+
 document.querySelectorAll('[data-video-load]').forEach((button) => {
     button.addEventListener('click', () => {
         const player = button.closest('[data-video-player]');

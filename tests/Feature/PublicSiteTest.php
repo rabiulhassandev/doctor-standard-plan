@@ -28,6 +28,20 @@ test('featured content takes priority in the limited homepage selection', functi
     $this->get('/en')->assertOk()->assertSeeInOrder(['Featured care', 'Example Service']);
 });
 
+test('the floating actions share the current page and link to the appointment form in its language', function (string $locale) {
+    $appointment = route('public.appointment', ['locale' => $locale]);
+    $shareUrl = rawurlencode(route('public.services', ['locale' => $locale]));
+
+    $this->get('/'.$locale.'/services?source=example')
+        ->assertOk()
+        ->assertSee('aria-label="'.trans('site.ref.share_page', [], $locale).'"', false)
+        ->assertSee('https://www.facebook.com/sharer/sharer.php?u='.$shareUrl.'"', false)
+        ->assertSee('https://wa.me/?text='.$shareUrl.'"', false)
+        ->assertSee('class="floating-appointment" href="'.$appointment.'#appointment-request"', false);
+
+    $this->get($appointment)->assertOk()->assertSee('id="appointment-request"', false);
+})->with(['en', 'bn']);
+
 test('the main homepage shows the carousel and published services', function () {
     $service = Service::factory()->published()->create();
     DoctorProfile::factory()->create(['id' => 1, 'is_demo' => false, 'image_path' => 'media/portrait.webp']);

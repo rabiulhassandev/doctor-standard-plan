@@ -39,6 +39,7 @@
     @include('public.partials.reference-nav')
     <main id="main-content" tabindex="-1">@yield('content')</main>
     @include('public.partials.reference-footer')
+    <x-public.floating-actions :share-url="$seo['canonical'] ?? url()->current()" :locale="$locale" />
     @if($analyticsAllowed)
         <aside class="consent-banner" data-consent-banner hidden aria-label="{{ __('site.cookie_preferences') }}"><div><strong>{{ __('site.analytics_title') }}</strong><p>{{ __('site.analytics_text') }}</p></div><div class="flex gap-3"><button class="btn btn-secondary" data-consent="denied" type="button">{{ __('site.decline') }}</button><button class="btn btn-primary" data-consent="granted" type="button">{{ __('site.allow_analytics') }}</button></div></aside>
     @endif

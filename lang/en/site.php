@@ -4,6 +4,11 @@ return [
     'ref' => [
         'menu' => 'Menu',
         'hotline' => 'Practice hotline',
+        'share_page' => 'Share this page',
+        'share_facebook' => 'Share on Facebook',
+        'share_whatsapp' => 'Share on WhatsApp',
+        'copy_link' => 'Copy link',
+        'link_copied' => 'Link copied',
         'chamber_contact' => 'Chamber contact',
         'quick_links' => 'Plan your visit',
         'visit_details' => 'Your visit details',

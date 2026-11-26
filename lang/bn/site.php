@@ -4,6 +4,11 @@ return [
     'ref' => [
         'menu' => 'মেনু',
         'hotline' => 'চেম্বারের হটলাইন',
+        'share_page' => 'এই পেজটি শেয়ার করুন',
+        'share_facebook' => 'Facebook-এ শেয়ার করুন',
+        'share_whatsapp' => 'WhatsApp-এ শেয়ার করুন',
+        'copy_link' => 'লিংক কপি করুন',
+        'link_copied' => 'লিংক কপি হয়েছে',
         'chamber_contact' => 'চেম্বারে যোগাযোগ',
         'quick_links' => 'সাক্ষাতের প্রস্তুতি',
         'visit_details' => 'সাক্ষাতের তথ্য',

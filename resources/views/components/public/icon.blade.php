@@ -36,6 +36,8 @@
         @case('external')<path d="M13 5h6v6m0-6-8 8m-2-8H5v14h14v-4"/>@break
         @case('logout')<path d="M10 4H5v16h5m5-4 4-4-4-4m4 4H9"/>@break
         @case('tag')<path d="M20 13 13 20 4 11V4h7zM8 8h.01"/>@break
+        @case('share')<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="5" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5m-7.6 6.9 7.6 4.5"/>@break
+        @case('copy')<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>@break
         @default<circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/>
     @endswitch
 </svg>

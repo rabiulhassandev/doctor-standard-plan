@@ -5,7 +5,7 @@
 
     <section class="section public-form-section">
         <div class="container form-layout">
-            <div class="form-panel">
+            <div class="form-panel" id="appointment-request">
                 @include('public.partials.form-feedback')
                 <header class="public-form-heading">
                     <span class="icon-box"><x-public.icon name="calendar" /></span>
